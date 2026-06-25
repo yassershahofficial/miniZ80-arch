@@ -1,0 +1,5 @@
+sim.vvp
+firmware/*.bin
+firmware/*.hex
+__pycache__/
+*.pyc
