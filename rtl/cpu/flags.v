@@ -24,6 +24,7 @@ module flags (
     output wire       z,
     output wire       c
 );
+
     reg [7:0] F;
 
     wire next_c =
