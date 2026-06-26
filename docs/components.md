@@ -57,11 +57,16 @@ System-level modules (sibling to `cpu/`):
 | ROM | `rtl/rom.v` | Program store at 0x0000 |
 | RAM | `rtl/ram.v` | Stack and variables |
 
-Testbench:
+Testbenches:
 
-| File | Role |
+| Path | Role |
 |------|------|
-| `tb/tb_cpu.v` | Clock, reset, instantiate `system`, run until `HALT` |
+| `tb/components/` | Unit tests — one RTL module per file (`make test-components`) |
+| `tb/dut/` | Test-only harness modules wiring subsets of the CPU |
+| `tb/stages/` | Integration ladder — build order from ALU up to SP+RAM (`make test-stages`) |
+| `tb/tb_cpu.v` | Final level — full `system`, firmware until `HALT` (`make test`) |
+
+See [tb/stages/README.md](../tb/stages/README.md) for the stage ladder table.
 
 All RTL stubs exist; implement logic block-by-block following the build order below.
 

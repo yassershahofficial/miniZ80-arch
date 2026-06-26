@@ -1,4 +1,6 @@
-// Flag register F — S, Z, H, P/V, N, C.
+// Flag register F : S, Z, H, P/V, N, C.
+//  7   6   5   4   3   2   1   0
+//  S   Z   0   H   0   PV  N   C 
 
 module flags (
     input  wire       clk,

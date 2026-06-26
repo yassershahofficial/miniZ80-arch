@@ -26,7 +26,10 @@ miniZ80_arch/
 │       ├── control.v       # Multi-cycle FSM
 │       └── bus.v           # Address / data mux
 ├── tb/
-│   └── tb_cpu.v            # System testbench
+│   ├── components/         # Per-module unit testbenches
+│   ├── dut/                # Test harness modules (subset wiring)
+│   ├── stages/             # Integration ladder (build order)
+│   └── tb_cpu.v            # Full system testbench
 ├── asm/
 │   └── examples/
 │       └── milestone.asm   # NOP → LD A,n → HALT
@@ -62,6 +65,13 @@ make asm EX=examples/milestone
 
 # Run system testbench (requires iverilog)
 make sim
+
+# Unit tests (one module each) and staged integration ladder
+make test-components
+make test-stages
+
+# Everything: components + stages + firmware integration tests
+make test-all
 ```
 
 Expected sim output: `HALT reached, A = 42` then `PASS`.

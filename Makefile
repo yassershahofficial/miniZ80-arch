@@ -26,7 +26,109 @@ RTL = \
 
 TB = tb/tb_cpu.v
 
-.PHONY: asm sim test clean
+TB_INC = -I tb/components
+CPU_RTL = rtl/cpu/alu.v rtl/cpu/flags.v rtl/cpu/reg_file.v rtl/cpu/pc.v \
+	rtl/cpu/sp.v rtl/cpu/shifter.v rtl/cpu/insn_meta.v rtl/cpu/decode.v
+DUT_RTL = tb/dut/stage_alu_flags.v tb/dut/stage_datapath.v tb/dut/stage_fetch.v
+
+.PHONY: asm sim test test-components test-stages test-all clean \
+	test-tb-alu test-tb-flags test-tb-reg-file test-tb-pc test-tb-sp \
+	test-tb-shifter test-tb-insn-meta test-tb-decode \
+	test-stage01-alu test-stage02-alu-flags test-stage03-datapath \
+	test-stage04-shifter test-stage05-decode test-stage06-pc \
+	test-stage07-fetch test-stage08-sp-mem
+
+test-components: test-tb-alu test-tb-flags test-tb-reg-file test-tb-pc \
+	test-tb-sp test-tb-shifter test-tb-insn-meta test-tb-decode
+
+test-stages: test-stage01-alu test-stage02-alu-flags test-stage03-datapath \
+	test-stage04-shifter test-stage05-decode test-stage06-pc \
+	test-stage07-fetch test-stage08-sp-mem
+
+test-all: test-components test-stages test
+
+test-tb-alu:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/components/tb_alu.v rtl/cpu/alu.v
+	vvp sim.vvp
+
+test-tb-flags:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/components/tb_flags.v rtl/cpu/flags.v
+	vvp sim.vvp
+
+test-tb-reg-file:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/components/tb_reg_file.v rtl/cpu/reg_file.v
+	vvp sim.vvp
+
+test-tb-pc:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/components/tb_pc.v rtl/cpu/pc.v
+	vvp sim.vvp
+
+test-tb-sp:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/components/tb_sp.v rtl/cpu/sp.v
+	vvp sim.vvp
+
+test-tb-shifter:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/components/tb_shifter.v rtl/cpu/shifter.v
+	vvp sim.vvp
+
+test-tb-insn-meta:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/components/tb_insn_meta.v rtl/cpu/insn_meta.v
+	vvp sim.vvp
+
+test-tb-decode:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/components/tb_decode.v rtl/cpu/decode.v
+	vvp sim.vvp
+
+test-stage01-alu:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/stages/tb_stage01_alu.v rtl/cpu/alu.v
+	vvp sim.vvp
+
+test-stage02-alu-flags:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu -y tb/dut $(TB_INC) \
+		tb/stages/tb_stage02_alu_flags.v tb/dut/stage_alu_flags.v \
+		rtl/cpu/alu.v rtl/cpu/flags.v
+	vvp sim.vvp
+
+test-stage03-datapath:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu -y tb/dut $(TB_INC) \
+		tb/stages/tb_stage03_datapath.v tb/dut/stage_datapath.v \
+		rtl/cpu/alu.v rtl/cpu/flags.v rtl/cpu/reg_file.v
+	vvp sim.vvp
+
+test-stage04-shifter:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/stages/tb_stage04_shifter.v rtl/cpu/shifter.v rtl/cpu/flags.v
+	vvp sim.vvp
+
+test-stage05-decode:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/stages/tb_stage05_decode.v rtl/cpu/insn_meta.v rtl/cpu/decode.v
+	vvp sim.vvp
+
+test-stage06-pc:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/stages/tb_stage06_pc.v rtl/cpu/pc.v
+	vvp sim.vvp
+
+test-stage07-fetch:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu -y tb/dut $(TB_INC) \
+		tb/stages/tb_stage07_fetch.v tb/dut/stage_fetch.v \
+		rtl/cpu/pc.v rtl/cpu/insn_meta.v rtl/rom.v
+	vvp sim.vvp
+
+test-stage08-sp-mem:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/stages/tb_stage08_sp_mem.v rtl/cpu/sp.v rtl/ram.v
+	vvp sim.vvp
 
 asm:
 	$(ASM) $(SRC) -o $(BIN)
