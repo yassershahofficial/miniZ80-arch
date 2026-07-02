@@ -1,4 +1,4 @@
-// Control FSM — sequences fetch and execute cycles.
+// Control FSM : sequences fetch and execute cycles.
 
 module control (
     input  wire       clk,

@@ -1,4 +1,4 @@
-// Stage 5 — insn_meta + decode (previous: shifter path).
+// Stage 5 : insn_meta + decode (previous: shifter path).
 // Proves opcode maps to length/metadata and control signals (no clock).
 
 `timescale 1ns / 1ps

@@ -1,4 +1,4 @@
-// Program counter — points at current instruction/operand in memory.
+// Program counter : points at current instruction/operand in memory.
 
 module pc (
     input  wire        clk,

@@ -1,4 +1,4 @@
-// Stage 7 — PC + insn_meta + ROM (previous: PC).
+// Stage 7 "" PC + insn_meta + ROM (previous: PC).
 // Proves PC=0 reads first ROM byte; full PC advance is covered in tb_cpu.
 
 `timescale 1ns / 1ps

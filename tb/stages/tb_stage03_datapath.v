@@ -1,4 +1,4 @@
-// Stage 3 — alu + flags + reg_file (previous: alu + flags).
+// Stage 3 : alu + flags + reg_file (previous: alu + flags).
 
 `timescale 1ns / 1ps
 `include "tb_utils.vh"

@@ -1,4 +1,4 @@
-// Stage 2 — ALU + flags (previous: alu only).
+// Stage 2 : ALU + flags (previous: alu only).
 
 `timescale 1ns / 1ps
 `include "tb_utils.vh"

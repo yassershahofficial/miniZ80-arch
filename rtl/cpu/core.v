@@ -1,4 +1,4 @@
-// miniZ80 CPU core — integrates all datapath and control blocks.
+// miniZ80 CPU core : integrates all datapath and control blocks.
 
 module cpu_core (
     input  wire        clk,

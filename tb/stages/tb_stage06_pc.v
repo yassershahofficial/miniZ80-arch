@@ -1,4 +1,4 @@
-// Stage 6 — PC load (previous: decode/metadata).
+// Stage 6 : PC load (previous: decode/metadata).
 
 `timescale 1ns / 1ps
 `include "tb_utils.vh"

@@ -1,4 +1,4 @@
-// Stage 8 — SP + RAM (previous: fetch path).
+// Stage 8 : SP + RAM (previous: fetch path).
 
 `timescale 1ns / 1ps
 `include "tb_utils.vh"

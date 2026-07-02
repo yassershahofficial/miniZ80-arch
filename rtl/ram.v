@@ -1,9 +1,9 @@
-// RAM — stack and program variables.
+// RAM : stack and program variables.
 // Parameterize depth once the memory map is fixed.
 
 module ram #(
-    parameter ADDR_WIDTH = 10,   // 1 KiB — adjust with ROM map
-    parameter BASE_ADDR  = 16'h0400  // TBD — place RAM above ROM region
+    parameter ADDR_WIDTH = 10,   // 1 KiB : adjust with ROM map
+    parameter BASE_ADDR  = 16'h0400  // TBD : place RAM above ROM region
 ) (
     input  wire                    clk,
     input  wire [15:0]             addr,

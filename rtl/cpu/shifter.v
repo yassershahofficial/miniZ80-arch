@@ -1,4 +1,4 @@
-// Accumulator rotates — RLCA, RRCA, RLA, RRA.
+// Accumulator rotates : RLCA, RRCA, RLA, RRA.
 
 module shifter (
     input  wire [1:0]  op,       // 0=RLCA, 1=RRCA, 2=RLA, 3=RRA
@@ -8,8 +8,8 @@ module shifter (
     output wire [7:0]  result,
     output wire        carry_out
 );
-    wire [7:0] rlca = {a[6:0], 1'b0};
-    wire [7:0] rrca = {1'b0, a[7:1]};
+    wire [7:0] rlca = {a[6:0], a[7]};
+    wire [7:0] rrca = {a[0], a[7:1]};
     wire [7:0] rla  = {a[6:0], carry_in};
     wire [7:0] rra  = {carry_in, a[7:1]};
 

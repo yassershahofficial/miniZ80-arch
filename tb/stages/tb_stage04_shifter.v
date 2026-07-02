@@ -1,4 +1,4 @@
-// Stage 4 — shifter + flags (previous: datapath with reg_file).
+// Stage 4 : shifter + flags (previous: datapath with reg_file).
 
 `timescale 1ns / 1ps
 `include "tb_utils.vh"

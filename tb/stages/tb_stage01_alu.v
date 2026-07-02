@@ -1,4 +1,4 @@
-// Stage 1 — ALU only (combinational datapath arithmetic).
+// Stage 1 : ALU only (combinational datapath arithmetic).
 
 `timescale 1ns / 1ps
 `include "tb_utils.vh"
