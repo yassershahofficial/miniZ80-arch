@@ -35,12 +35,12 @@ DUT_RTL = tb/dut/stage_alu_flags.v tb/dut/stage_datapath.v tb/dut/stage_fetch.v
 
 .PHONY: asm sim test test-components test-stages test-all clean \
 	test-tb-alu test-tb-flags test-tb-reg-file test-tb-pc test-tb-sp \
-	test-tb-shifter test-tb-insn-meta test-tb-decode \
+	test-tb-shifter test-tb-insn-meta test-tb-decode test-tb-control \
 	test-stage01-alu test-stage02-alu-flags test-stage03-datapath \
 	test-stage04-shifter test-stage05-decode test-stage06-pc \
 	test-stage07-fetch test-stage08-sp-mem \
 	waves wave-alu wave-flags wave-reg-file wave-pc wave-sp \
-	wave-shifter wave-insn-meta wave-decode wave-cpu
+	wave-shifter wave-insn-meta wave-decode wave-control wave-cpu
 
 # $(1)=vcd basename, $(2)=tb file, $(3)=rtl sources
 define WAVE_DUMP
@@ -56,7 +56,7 @@ define WAVE_VIEW
 endef
 
 waves: wave-alu-dump wave-flags-dump wave-reg-file-dump wave-pc-dump wave-sp-dump \
-	wave-shifter-dump wave-insn-meta-dump wave-decode-dump
+	wave-shifter-dump wave-insn-meta-dump wave-decode-dump wave-control-dump
 
 wave-alu-dump:
 	$(call WAVE_DUMP,alu,tb_alu.v,rtl/cpu/alu.v)
@@ -82,6 +82,9 @@ wave-insn-meta-dump:
 wave-decode-dump:
 	$(call WAVE_DUMP,decode,tb_decode.v,rtl/cpu/decode.v)
 
+wave-control-dump:
+	$(call WAVE_DUMP,control,tb_control.v,rtl/cpu/control.v rtl/cpu/decode.v rtl/cpu/insn_meta.v)
+
 wave-alu:
 	$(call WAVE_VIEW,alu,tb_alu.v,rtl/cpu/alu.v)
 
@@ -106,8 +109,11 @@ wave-insn-meta:
 wave-decode:
 	$(call WAVE_VIEW,decode,tb_decode.v,rtl/cpu/decode.v)
 
+wave-control:
+	$(call WAVE_VIEW,control,tb_control.v,rtl/cpu/control.v rtl/cpu/decode.v rtl/cpu/insn_meta.v)
+
 test-components: test-tb-alu test-tb-flags test-tb-reg-file test-tb-pc \
-	test-tb-sp test-tb-shifter test-tb-insn-meta test-tb-decode
+	test-tb-sp test-tb-shifter test-tb-insn-meta test-tb-decode test-tb-control
 
 test-stages: test-stage01-alu test-stage02-alu-flags test-stage03-datapath \
 	test-stage04-shifter test-stage05-decode test-stage06-pc \
@@ -153,6 +159,11 @@ test-tb-insn-meta:
 test-tb-decode:
 	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
 		tb/components/tb_decode.v rtl/cpu/decode.v
+	vvp sim.vvp
+
+test-tb-control:
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) \
+		tb/components/tb_control.v rtl/cpu/control.v rtl/cpu/decode.v rtl/cpu/insn_meta.v
 	vvp sim.vvp
 
 test-stage01-alu:

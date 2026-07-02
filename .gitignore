@@ -4,3 +4,4 @@ firmware/*.hex
 waves/*.vcd
 __pycache__/
 *.pyc
+IMJ48303 Project.pdf

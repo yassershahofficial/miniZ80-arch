@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave Analyzer v3
+[*]
+[dumpfile] "(0)/waves/control.vcd"
+[savefile] "(0)/waves/control.gtkw"
+[timestart] 0
+[size] 1400 900
+[pos] -1 -1
+*-1.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+@28
+tb_control.clk
+@28
+tb_control.rst
+@28
+tb_control.pc[15:0]
+@28
+tb_control.mem_rdata[7:0]
+@28
+tb_control.fetch_addr[15:0]
+@28
+tb_control.fetch_read
+@28
+tb_control.u_dut.state[3:0]
+@28
+tb_control.halted
+@28
+tb_control.opcode[7:0]
+@28
+tb_control.imm8[7:0]
+@28
+tb_control.imm16[15:0]
+@28
+tb_control.reg_we
+@28
+tb_control.reg_w_addr[2:0]
+@28
+tb_control.reg_w_data[7:0]
+@28
+tb_control.pc_en
+@28
+tb_control.pc_load
+@28
+tb_control.pc_in[15:0]

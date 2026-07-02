@@ -1,4 +1,4 @@
-// Instruction decoder — opcode to datapath control signals.
+// Instruction decoder : opcode to datapath control signals.
 
 module decode (
     input  wire [7:0] opcode,
@@ -54,16 +54,16 @@ module decode (
     assign is_ld_a_n = (opcode == 8'h3E);
     assign is_ld_hl_n = (opcode == 8'h36);
 
-    // LD BC/DE/HL/SP,nn — opcode pattern 00PP0001
+    // LD BC/DE/HL/SP,nn : opcode pattern 00PP0001
     assign is_ld_rp_nn = (opcode[3:0] == 4'h1) && (opcode[7:6] == 2'b00);
     assign ld_pair_sel = opcode[5:4];
 
     assign is_ld = (opcode[7:6] == 2'b01) && !is_halt;
 
-    // LD r,r' (includes (HL) forms) — opcode 40–7F except HALT
+    // LD r,r' (includes (HL) forms) : opcode 40–7F except HALT
     assign is_ld_rr = (opcode >= 8'h40) && (opcode <= 8'h7F) && (opcode != 8'h76);
 
-    // LD r,n and LD (HL),n — opcode pattern 00DDD110
+    // LD r,n and LD (HL),n : opcode pattern 00DDD110
     assign is_ld_r_n =
         (opcode == 8'h06) || (opcode == 8'h0E) || (opcode == 8'h16) ||
         (opcode == 8'h1E) || (opcode == 8'h26) || (opcode == 8'h2E) ||
