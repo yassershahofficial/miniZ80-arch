@@ -4,6 +4,8 @@
 `include "tb_utils.vh"
 
 module tb_reg_file;
+    `TB_DUMP_VCD(tb_reg_file)
+
     reg        clk = 0;
     reg        rst = 1;
     reg  [2:0] rs_addr = 0;

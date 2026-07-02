@@ -1,0 +1,35 @@
+[*]
+[*] GTKWave Analyzer v3
+[*]
+[dumpfile] "(0)/waves/milestone.vcd"
+[savefile] "(0)/waves/cpu.gtkw"
+[timestart] 0
+[size] 1400 900
+[pos] -1 -1
+*-1.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+@28
+tb_cpu.clk
+@28
+tb_cpu.rst
+@28
+tb_cpu.halt
+@28
+tb_cpu.dbg_a[7:0]
+@28
+tb_cpu.dbg_b[7:0]
+@28
+tb_cpu.dbg_c[7:0]
+@28
+tb_cpu.dbg_h[7:0]
+@28
+tb_cpu.dbg_l[7:0]
+@28
+tb_cpu.dbg_sp[15:0]
+@28
+tb_cpu.u_dut.mem_addr[15:0]
+@28
+tb_cpu.u_dut.mem_rdata[7:0]
+@28
+tb_cpu.u_dut.mem_read
+@28
+tb_cpu.u_dut.mem_write

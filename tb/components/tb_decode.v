@@ -4,6 +4,8 @@
 `include "tb_utils.vh"
 
 module tb_decode;
+    `TB_DUMP_VCD(tb_decode)
+
     reg  [7:0] opcode;
     wire       is_ld, is_ld_a_n, is_ld_rr, is_ld_r_n, is_ld_hl_n, is_ld_rp_nn;
     wire [1:0] ld_pair_sel;

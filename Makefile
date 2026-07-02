@@ -27,6 +27,8 @@ RTL = \
 TB = tb/tb_cpu.v
 
 TB_INC = -I tb/components
+WAVES_DIR = waves
+WAVE_SIM = $(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu $(TB_INC) -DDUMP_VCD
 CPU_RTL = rtl/cpu/alu.v rtl/cpu/flags.v rtl/cpu/reg_file.v rtl/cpu/pc.v \
 	rtl/cpu/sp.v rtl/cpu/shifter.v rtl/cpu/insn_meta.v rtl/cpu/decode.v
 DUT_RTL = tb/dut/stage_alu_flags.v tb/dut/stage_datapath.v tb/dut/stage_fetch.v
@@ -36,7 +38,73 @@ DUT_RTL = tb/dut/stage_alu_flags.v tb/dut/stage_datapath.v tb/dut/stage_fetch.v
 	test-tb-shifter test-tb-insn-meta test-tb-decode \
 	test-stage01-alu test-stage02-alu-flags test-stage03-datapath \
 	test-stage04-shifter test-stage05-decode test-stage06-pc \
-	test-stage07-fetch test-stage08-sp-mem
+	test-stage07-fetch test-stage08-sp-mem \
+	waves wave-alu wave-flags wave-reg-file wave-pc wave-sp \
+	wave-shifter wave-insn-meta wave-decode wave-cpu
+
+# $(1)=vcd basename, $(2)=tb file, $(3)=rtl sources
+define WAVE_DUMP
+	@mkdir -p $(WAVES_DIR)
+	$(WAVE_SIM) -DVCD_FILE=\"$(WAVES_DIR)/$(1).vcd\" \
+		tb/components/$(2) $(3)
+	vvp sim.vvp
+endef
+
+define WAVE_VIEW
+	$(call WAVE_DUMP,$(1),$(2),$(3))
+	gtkwave $(WAVES_DIR)/$(1).vcd $(WAVES_DIR)/$(1).gtkw &
+endef
+
+waves: wave-alu-dump wave-flags-dump wave-reg-file-dump wave-pc-dump wave-sp-dump \
+	wave-shifter-dump wave-insn-meta-dump wave-decode-dump
+
+wave-alu-dump:
+	$(call WAVE_DUMP,alu,tb_alu.v,rtl/cpu/alu.v)
+
+wave-flags-dump:
+	$(call WAVE_DUMP,flags,tb_flags.v,rtl/cpu/flags.v)
+
+wave-reg-file-dump:
+	$(call WAVE_DUMP,reg_file,tb_reg_file.v,rtl/cpu/reg_file.v)
+
+wave-pc-dump:
+	$(call WAVE_DUMP,pc,tb_pc.v,rtl/cpu/pc.v)
+
+wave-sp-dump:
+	$(call WAVE_DUMP,sp,tb_sp.v,rtl/cpu/sp.v)
+
+wave-shifter-dump:
+	$(call WAVE_DUMP,shifter,tb_shifter.v,rtl/cpu/shifter.v)
+
+wave-insn-meta-dump:
+	$(call WAVE_DUMP,insn_meta,tb_insn_meta.v,rtl/cpu/insn_meta.v)
+
+wave-decode-dump:
+	$(call WAVE_DUMP,decode,tb_decode.v,rtl/cpu/decode.v)
+
+wave-alu:
+	$(call WAVE_VIEW,alu,tb_alu.v,rtl/cpu/alu.v)
+
+wave-flags:
+	$(call WAVE_VIEW,flags,tb_flags.v,rtl/cpu/flags.v)
+
+wave-reg-file:
+	$(call WAVE_VIEW,reg_file,tb_reg_file.v,rtl/cpu/reg_file.v)
+
+wave-pc:
+	$(call WAVE_VIEW,pc,tb_pc.v,rtl/cpu/pc.v)
+
+wave-sp:
+	$(call WAVE_VIEW,sp,tb_sp.v,rtl/cpu/sp.v)
+
+wave-shifter:
+	$(call WAVE_VIEW,shifter,tb_shifter.v,rtl/cpu/shifter.v)
+
+wave-insn-meta:
+	$(call WAVE_VIEW,insn_meta,tb_insn_meta.v,rtl/cpu/insn_meta.v)
+
+wave-decode:
+	$(call WAVE_VIEW,decode,tb_decode.v,rtl/cpu/decode.v)
 
 test-components: test-tb-alu test-tb-flags test-tb-reg-file test-tb-pc \
 	test-tb-sp test-tb-shifter test-tb-insn-meta test-tb-decode
@@ -139,6 +207,16 @@ sim: asm $(RTL) $(TB)
 		-DFIRMWARE=\"$(HEX)\" \
 		$(TB) $(RTL)
 	vvp sim.vvp
+
+wave-cpu: asm
+	@mkdir -p $(WAVES_DIR)
+	$(SIM) -g2012 -o sim.vvp -I rtl -y rtl/cpu \
+		-DDUMP_VCD -DSKIP_CHECK \
+		-DVCD_FILE=\"$(WAVES_DIR)/$(notdir $(EX)).vcd\" \
+		-DFIRMWARE=\"$(HEX)\" \
+		$(TB) $(RTL)
+	vvp sim.vvp
+	gtkwave $(WAVES_DIR)/$(notdir $(EX)).vcd $(WAVES_DIR)/cpu.gtkw &
 
 test: test-milestone test-ld-reg test-ld-hl test-ld-rp test-alu test-alu-hl test-inc test-inc-hl test-stack test-stack-af test-branch test-branch-cond test-rotate
 
@@ -255,3 +333,4 @@ test-rotate:
 
 clean:
 	rm -f sim.vvp
+	rm -f $(WAVES_DIR)/*.vcd

@@ -1,0 +1,29 @@
+[*]
+[*] GTKWave Analyzer v3
+[*]
+[dumpfile] "(0)/waves/alu.vcd"
+[savefile] "(0)/waves/alu.gtkw"
+[timestart] 0
+[size] 1400 900
+[pos] -1 -1
+*-1.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+@28
+tb_alu.op[3:0]
+@28
+tb_alu.a[7:0]
+@28
+tb_alu.b[7:0]
+@28
+tb_alu.carry_in
+@28
+tb_alu.result[7:0]
+@28
+tb_alu.carry_out
+@28
+tb_alu.half_carry
+@28
+tb_alu.overflow
+@28
+tb_alu.zero
+@28
+tb_alu.negative

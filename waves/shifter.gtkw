@@ -1,0 +1,19 @@
+[*]
+[*] GTKWave Analyzer v3
+[*]
+[dumpfile] "(0)/waves/shifter.vcd"
+[savefile] "(0)/waves/shifter.gtkw"
+[timestart] 0
+[size] 1400 900
+[pos] -1 -1
+*-1.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+@28
+tb_shifter.op[1:0]
+@28
+tb_shifter.a[7:0]
+@28
+tb_shifter.carry_in
+@28
+tb_shifter.result[7:0]
+@28
+tb_shifter.carry_out

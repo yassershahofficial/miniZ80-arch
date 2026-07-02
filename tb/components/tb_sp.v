@@ -4,6 +4,8 @@
 `include "tb_utils.vh"
 
 module tb_sp;
+    `TB_DUMP_VCD(tb_sp)
+
     reg        clk = 0;
     reg        rst = 1;
     reg        load = 0;

@@ -31,6 +31,13 @@
 `endif
 
 module tb_cpu;
+    `ifdef DUMP_VCD
+    initial begin
+        $dumpfile(`VCD_FILE);
+        $dumpvars(0, tb_cpu);
+    end
+    `endif
+
     reg clk = 0;
     reg rst = 1;
     wire halt;
@@ -65,6 +72,7 @@ module tb_cpu;
         $display("tb_cpu: HALT  A=%02X B=%02X C=%02X H=%02X L=%02X SP=%04X",
                  dbg_a, dbg_b, dbg_c, dbg_h, dbg_l, dbg_sp);
 
+        `ifndef SKIP_CHECK
         if (dbg_a !== `EXPECT_A) begin
             $display("tb_cpu: FAIL — expected A=%02X", `EXPECT_A);
             $fatal(1);
@@ -89,6 +97,7 @@ module tb_cpu;
             $display("tb_cpu: FAIL — expected SP=%04X", `EXPECT_SP);
             $fatal(1);
         end
+        `endif
 
         $display("tb_cpu: PASS");
         $finish;

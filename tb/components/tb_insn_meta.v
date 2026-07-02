@@ -4,6 +4,8 @@
 `include "tb_utils.vh"
 
 module tb_insn_meta;
+    `TB_DUMP_VCD(tb_insn_meta)
+
     reg  [7:0] opcode;
     wire [1:0] insn_len;
     wire       illegal;

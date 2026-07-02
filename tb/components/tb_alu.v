@@ -4,6 +4,8 @@
 `include "tb_utils.vh"
 
 module tb_alu;
+    `TB_DUMP_VCD(tb_alu)
+
     reg  [3:0] op;
     reg  [7:0] a;
     reg  [7:0] b;

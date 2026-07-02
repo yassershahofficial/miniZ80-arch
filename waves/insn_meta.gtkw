@@ -1,0 +1,21 @@
+[*]
+[*] GTKWave Analyzer v3
+[*]
+[dumpfile] "(0)/waves/insn_meta.vcd"
+[savefile] "(0)/waves/insn_meta.gtkw"
+[timestart] 0
+[size] 1400 900
+[pos] -1 -1
+*-1.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+@28
+tb_insn_meta.opcode[7:0]
+@28
+tb_insn_meta.insn_len[1:0]
+@28
+tb_insn_meta.illegal
+@28
+tb_insn_meta.hl_read
+@28
+tb_insn_meta.hl_write
+@28
+tb_insn_meta.stack_op

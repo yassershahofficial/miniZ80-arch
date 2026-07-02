@@ -1,0 +1,31 @@
+[*]
+[*] GTKWave Analyzer v3
+[*]
+[dumpfile] "(0)/waves/decode.vcd"
+[savefile] "(0)/waves/decode.gtkw"
+[timestart] 0
+[size] 1400 900
+[pos] -1 -1
+*-1.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+@28
+tb_decode.opcode[7:0]
+@28
+tb_decode.is_nop
+@28
+tb_decode.is_halt
+@28
+tb_decode.is_ld_a_n
+@28
+tb_decode.is_alu
+@28
+tb_decode.alu_op[3:0]
+@28
+tb_decode.reg_s[2:0]
+@28
+tb_decode.is_jp
+@28
+tb_decode.is_branch
+@28
+tb_decode.is_rotate
+@28
+tb_decode.rotate_op[1:0]

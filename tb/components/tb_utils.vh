@@ -21,3 +21,12 @@
     $fatal(1)
 
 `define tick @(posedge clk);
+
+// Enable with -DDUMP_VCD -DVCD_FILE=\"waves/<name>.vcd\" (see Makefile wave-* targets).
+`define TB_DUMP_VCD(top) \
+    `ifdef DUMP_VCD \
+    initial begin \
+        $dumpfile(`VCD_FILE); \
+        $dumpvars(0, top); \
+    end \
+    `endif

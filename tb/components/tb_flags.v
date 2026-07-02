@@ -4,6 +4,8 @@
 `include "tb_utils.vh"
 
 module tb_flags;
+    `TB_DUMP_VCD(tb_flags)
+
     reg       clk = 0;
     reg       rst = 1;
     reg       update = 0;

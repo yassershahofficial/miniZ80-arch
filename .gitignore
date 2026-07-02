@@ -1,5 +1,6 @@
 sim.vvp
 firmware/*.bin
 firmware/*.hex
+waves/*.vcd
 __pycache__/
 *.pyc

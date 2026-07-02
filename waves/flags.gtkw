@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave Analyzer v3
+[*]
+[dumpfile] "(0)/waves/flags.vcd"
+[savefile] "(0)/waves/flags.gtkw"
+[timestart] 0
+[size] 1400 900
+[pos] -1 -1
+*-1.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+@28
+tb_flags.clk
+@28
+tb_flags.rst
+@28
+tb_flags.update
+@28
+tb_flags.preserve_c
+@28
+tb_flags.scf
+@28
+tb_flags.ccf
+@28
+tb_flags.f_load
+@28
+tb_flags.f_wdata[7:0]
+@28
+tb_flags.flag_s
+@28
+tb_flags.flag_z
+@28
+tb_flags.flag_h
+@28
+tb_flags.flag_pv
+@28
+tb_flags.flag_n
+@28
+tb_flags.flag_c
+@28
+tb_flags.f_out[7:0]
+@28
+tb_flags.z
+@28
+tb_flags.c

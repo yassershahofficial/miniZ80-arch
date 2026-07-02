@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3
+[*]
+[dumpfile] "(0)/waves/pc.vcd"
+[savefile] "(0)/waves/pc.gtkw"
+[timestart] 0
+[size] 1400 900
+[pos] -1 -1
+*-1.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 0
+@28
+tb_pc.clk
+@28
+tb_pc.rst
+@28
+tb_pc.en
+@28
+tb_pc.load
+@28
+tb_pc.pc_in[15:0]
+@28
+tb_pc.step[1:0]
+@28
+tb_pc.pc_out[15:0]

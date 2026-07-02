@@ -72,8 +72,18 @@ make test-stages
 
 # Everything: components + stages + firmware integration tests
 make test-all
+
+# Generate VCD waveforms for all component testbenches (waves/*.vcd)
+make waves
+
+# Generate + open GTKWave for one component (requires gtkwave)
+make wave-alu
+
+# CPU system waveform with an example program
+make wave-cpu EX=examples/alu
+make wave-cpu EX=examples/stack
 ```
 
 Expected sim output: `HALT reached, A = 42` then `PASS`.
 
-Requires [Icarus Verilog](http://iverilog.icarus.com/) (`iverilog` + `vvp`). The RTL uses Verilog-2001 (no SystemVerilog `inside` operator).
+Requires [Icarus Verilog](http://iverilog.icarus.com/) (`iverilog` + `vvp`). Optional: [GTKWave](http://gtkwave.sourceforge.net/) for `wave-*` targets. The RTL uses Verilog-2001 (no SystemVerilog `inside` operator).
